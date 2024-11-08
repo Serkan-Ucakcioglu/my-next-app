@@ -3,6 +3,7 @@
 import prisma from "../../../lib/prisma";
 import {
   createTodo,
+  deleteTodo,
   getAllTodos,
   updateTodo,
 } from "../../../services/serviceOperations";
@@ -43,9 +44,7 @@ export default async function handler(req, res) {
     case "DELETE":
       try {
         const { id } = req.body;
-        await prisma.todo.delete({
-          where: { id },
-        });
+        await deleteTodo(id);
         res.status(204).end();
       } catch (error) {
         res.status(500).json({ error: "Error deleting todo" });

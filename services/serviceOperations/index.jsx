@@ -32,3 +32,15 @@ export async function updateTodo(tableName, id, title, completed) {
     res.status(500).json({ error: "Error updating todo" });
   }
 }
+
+//Delete Todo
+export async function deleteTodo(tableName, id) {
+  try {
+    await prisma[tableName].delete({
+      where: { id },
+    });
+    res.status(204).end();
+  } catch (error) {
+    res.status(500).json({ error: "Error deleting todo" });
+  }
+}
