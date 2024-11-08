@@ -38,22 +38,17 @@ const getAPI = async (
   URL,
   headers = { "Content-Type": "application/json" }
 ) => {
-  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL + URL}`, {
-    method: "GET",
-    headers: headers,
-    cache: "no-store",
-  })
-    .then((res) => {
-      if (res.redirected) {
-        // bazı yerlerde window'u bulamıyor kontrol et
-        //return window.location.href = res.url;
-      } else {
-        return res.json();
-      }
-    })
-    .catch((err) => console.log(err));
-
-  return data;
+  try {
+    const res = await fetch(`api/${URL}`, {
+      method: "GET",
+      headers: headers,
+      cache: "no-store",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    throw new Error(error);
+  }
 };
 
 export { postAPI, getAPI };
