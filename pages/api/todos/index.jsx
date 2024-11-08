@@ -1,6 +1,4 @@
 // pages/api/todos.js
-
-import prisma from "../../../lib/prisma";
 import {
   createTodo,
   deleteTodo,
