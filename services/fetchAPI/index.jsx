@@ -1,4 +1,3 @@
-// Öğrenci (kayıt) işlemleri için kullanılan servis
 const postAPI = async (
   URL,
   body,
@@ -9,31 +8,17 @@ const postAPI = async (
     if (!process.env.NEXT_PUBLIC_API_URL || !URL) {
       throw new Error("URL bulunamadı!");
     }
-    const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL + URL}`, {
+    const data = await fetch(`api/${URL}`, {
       method: method,
       headers: headers,
       body: JSON.stringify(body),
       cache: "no-store",
-      // cache önemli! her çalıştığında cache'deki veri yerine -> güncel veriyi almasını sağlar.
-      // bu olmaz ise üncel veriyi almayabiliyor dikkat et.
-      // Dinamik sayfalarda burası kullanılıyorsa o sayfalara -> export const dynamic = 'force-dynamic' ekle!
-    })
-      .then((res) => {
-        if (res.url.includes("/notification") && res.redirected) {
-          return (window.location.href = res.url);
-        } else {
-          return res.json();
-        }
-      })
-      .catch((err) => console.log(err));
-
-    return data;
+    });
   } catch (err) {
     throw new Error(`API request failed: ${err}`);
   }
 };
 
-// Öğrenci (kayıt) işlemleri için kullanılan servis
 const getAPI = async (
   URL,
   headers = { "Content-Type": "application/json" }
@@ -51,4 +36,48 @@ const getAPI = async (
   }
 };
 
-export { postAPI, getAPI };
+const putAPI = async (
+  URL,
+  id,
+  body,
+  method = "PUT",
+  headers = { "Content-Type": "application/json" }
+) => {
+  try {
+    if (!URL && !id) {
+      throw new Error("URL veya id bulunamadı!");
+    }
+    const data = await fetch(`api/${URL}/${id}`, {
+      method: method,
+      headers: headers,
+      body: JSON.stringify(body),
+      cache: "no-store",
+    });
+  } catch (err) {
+    throw new Error(`API request failed: ${err}`);
+  }
+};
+
+const deleteAPI = async (
+  URL,
+  id,
+  body,
+  method = "DELETE",
+  headers = (headers = { "Content-Type": "application/json" })
+) => {
+  try {
+    if (!URL && !id) {
+      throw new Error("URL veya id bulunamadı!");
+    }
+    const data = await fetch(`api/${URL}/${id}`, {
+      method,
+      headers,
+      body: JSON.stringify(body),
+      cache: "no-store",
+    });
+  } catch (error) {
+    throw new Error("failed");
+  }
+};
+
+export { postAPI, getAPI, putAPI, deleteAPI };

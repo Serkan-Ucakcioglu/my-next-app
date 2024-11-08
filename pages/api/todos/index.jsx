@@ -1,7 +1,7 @@
 // pages/api/todos.js
 
 import prisma from "../../../lib/prisma";
-import { getAllData } from "../../../services/serviceOperations";
+import { getAllTodos } from "../../../services/serviceOperations";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -9,9 +9,7 @@ export default async function handler(req, res) {
   switch (method) {
     case "GET":
       try {
-        const todos = await getAllData("todos");
-        console.log(todos, "todos");
-
+        const todos = await getAllTodos("todos");
         res.status(200).json(todos);
       } catch (error) {
         res.status(500).json({ error: "Error fetching todos" });
