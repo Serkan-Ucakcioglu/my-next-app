@@ -6,7 +6,7 @@ import {
   deleteTodo,
   getAllTodos,
   updateTodo,
-} from "../../../services/serviceOperations";
+} from "../../../services/prismaServiceOperations";
 
 export default async function handler(req, res) {
   const { method } = req;
