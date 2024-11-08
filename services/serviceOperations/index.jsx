@@ -9,8 +9,13 @@ export async function getAllTodos(tableName) {
     return { error: error.message };
   }
 }
-
-export async function createTodo(tableName) {
+// Create todo
+export async function createTodo(tableName, title) {
   try {
-  } catch (error) {}
+    const data = await prisma[tableName].create({
+      data: { title },
+    });
+  } catch (error) {
+    return { error: error.message };
+  }
 }

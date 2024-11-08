@@ -1,7 +1,7 @@
 // pages/api/todos.js
 
 import prisma from "../../../lib/prisma";
-import { getAllTodos } from "../../../services/serviceOperations";
+import { createTodo, getAllTodos } from "../../../services/serviceOperations";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -19,9 +19,7 @@ export default async function handler(req, res) {
     case "POST":
       try {
         const { title } = req.body;
-        const newTodo = await prisma.todo.create({
-          data: { title },
-        });
+        const newTodo = await createTodo("todos", title);
         res.status(201).json(newTodo);
       } catch (error) {
         res.status(500).json({ error: "Error creating todo" });
