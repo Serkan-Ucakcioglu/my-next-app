@@ -19,3 +19,16 @@ export async function createTodo(tableName, title) {
     return { error: error.message };
   }
 }
+
+// Put todo
+export async function updateTodo(tableName, id, title, completed) {
+  try {
+    const updatedTodo = await prisma[tableName].update({
+      where: { id },
+      data: { title, completed },
+    });
+    res.status(200).json(updatedTodo);
+  } catch (error) {
+    res.status(500).json({ error: "Error updating todo" });
+  }
+}

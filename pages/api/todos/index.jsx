@@ -1,7 +1,11 @@
 // pages/api/todos.js
 
 import prisma from "../../../lib/prisma";
-import { createTodo, getAllTodos } from "../../../services/serviceOperations";
+import {
+  createTodo,
+  getAllTodos,
+  updateTodo,
+} from "../../../services/serviceOperations";
 
 export default async function handler(req, res) {
   const { method } = req;
@@ -29,10 +33,7 @@ export default async function handler(req, res) {
     case "PUT":
       try {
         const { id, title, completed } = req.body;
-        const updatedTodo = await prisma.todo.update({
-          where: { id },
-          data: { title, completed },
-        });
+        const updatedTodo = await updateTodo("todos", id, title, completed);
         res.status(200).json(updatedTodo);
       } catch (error) {
         res.status(500).json({ error: "Error updating todo" });
