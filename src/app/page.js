@@ -1,8 +1,11 @@
 "use client";
 import { useEffect } from "react";
 import { getAPI } from "../../services/fetchAPI";
-import Todo from "@/components/todo";
 import Image from "next/image";
+import Todo from "../components/todo";
+import { useRouter } from "next/navigation";
+import Todoform from "@/components/todoform";
+import Todolist from "@/components/todolist";
 
 export default function Home() {
   useEffect(() => {
@@ -30,7 +33,9 @@ export default function Home() {
         width={500}
         height={500}
       />
-      <Todo />
+
+      <Todoform />
+      <Todolist />
     </div>
   );
 }
