@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { getAPI } from "../../services/fetchAPI";
 import Todo from "./todo";
 import { useTodosStore } from "@/store/todos";

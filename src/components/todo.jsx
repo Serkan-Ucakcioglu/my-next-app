@@ -21,6 +21,7 @@ export default function Todo({ item }) {
       className="flex justify-between items-center p-4 border border-2 hover:bg-gray-200 cursor-pointer hover:ease-in ease-in duration-300"
     >
       <div>{item?.title}</div>
+      <button>Completed</button>
       <button onClick={deleteItem}>🗑️</button>
     </div>
   );
