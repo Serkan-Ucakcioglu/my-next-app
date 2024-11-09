@@ -12,7 +12,6 @@ export default function Todo({ item }) {
       await addTodo(data);
     } catch (error) {
       throw new Error(error);
-      console.log(error, "catch err");
     }
   };
 
