@@ -11,6 +11,7 @@ export default function Todo({ item }) {
       const data = await getAPI("todos");
       await addTodo(data);
     } catch (error) {
+      throw new Error(error);
       console.log(error, "catch err");
     }
   };
