@@ -8,9 +8,9 @@ datasource db {
 }
 
 model todos {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
   completed Boolean
   title     String
   userId    Int
-  createdAt DateTime @default(now())
+  createdAt DateTime? @default(now())
 }
