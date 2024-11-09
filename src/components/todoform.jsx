@@ -1,18 +1,22 @@
 "use client";
 
 import { useState } from "react";
-import { postAPI } from "../../services/fetchAPI";
+import { getAPI, postAPI } from "../../services/fetchAPI";
+import { useTodosStore } from "@/store/todos";
 
 function Todoform() {
   const [val, setVal] = useState("");
+  const addTodo = useTodosStore((state) => state.addTodo);
 
   const onsubmit = async () => {
-    const data = {
+    const todo = {
       title: val,
       completed: false,
       userId: Date.now(),
     };
-    await postAPI("todos", data);
+    await postAPI("todos", todo);
+    const data = await getAPI("todos");
+    await addTodo(data);
   };
   return (
     <div className="flex flex-col w-[500px]">
