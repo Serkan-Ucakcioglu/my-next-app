@@ -18,11 +18,15 @@ export default function Todo({ item }) {
   return (
     <div
       id={item?.id}
-      className="flex justify-between items-center p-4 border border-2 hover:bg-gray-200 cursor-pointer hover:ease-in ease-in duration-300"
+      className={`flex justify-between items-center p-4 border border-2 hover:bg-gray-200 cursor-pointer hover:ease-in ease-in duration-300 ${
+        item?.completed && "bg-green-200 hover:bg-green-300"
+      }`}
     >
       <div>{item?.title}</div>
-      <button>Completed</button>
-      <button onClick={deleteItem}>🗑️</button>
+      <div className="flex items-center gap-2">
+        <button>Completed</button>
+        <button onClick={deleteItem}>🗑️</button>
+      </div>
     </div>
   );
 }
