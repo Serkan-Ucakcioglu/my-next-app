@@ -36,7 +36,7 @@ const putAPI = async (URL, id, body, method = "PUT") => {
     if (!URL && !id) {
       throw new Error("URL veya id bulunamadı!");
     }
-    const data = await fetch(`api/${URL}/${id}`, {
+    const data = await fetch(`api/${URL}?id=${id}`, {
       method: method,
       headers: headers,
       body: JSON.stringify(body),

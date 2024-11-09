@@ -34,8 +34,15 @@ export default async function handler(req, res) {
 
     case "PUT":
       try {
-        const { id, title, completed } = req.body;
-        const updatedTodo = await updateTodo("todos", id, title, completed);
+        const { id } = req.query;
+        const { title, completed, userId } = req.body;
+        const updatedTodo = await updateTodo(
+          "todos",
+          id,
+          title,
+          completed,
+          userId
+        );
         res.status(200).json(updatedTodo);
       } catch (error) {
         res.status(500).json({ error: "Error updating todo" });
