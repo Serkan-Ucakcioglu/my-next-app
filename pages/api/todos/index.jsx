@@ -22,8 +22,10 @@ export default async function handler(req, res) {
 
     case "POST":
       try {
-        const { title } = req.body;
-        const newTodo = await createTodo("todos", title);
+        const { title, userId, completed } = req.body;
+        console.log(title, userId, completed, "req body");
+
+        const newTodo = await createTodo("todos", title, userId, completed);
         res.status(201).json(newTodo);
       } catch (error) {
         res.status(500).json({ error: "Error creating todo" });

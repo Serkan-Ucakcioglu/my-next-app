@@ -2,24 +2,27 @@
 import React, { useEffect, useState } from "react";
 import { getAPI } from "../../services/fetchAPI";
 import Todo from "./todo";
+import { useTodosStore } from "@/store/todos";
 
 function Todolist() {
-  const [data, setData] = useState([]);
+  const todos = useTodosStore((state) => state.todos);
+  const addTodo = useTodosStore((state) => state.addTodo);
 
   useEffect(() => {
     async function getAllTodo() {
       const data = await getAPI("todos");
-      setData(data);
+      await addTodo(data);
     }
+
     getAllTodo();
   }, []);
+
   return (
     <>
       <div className="flex flex-col gap-2 w-[500px]">
-        {data.length &&
-          data?.slice(0, 20).map((item) => {
-            return <Todo key={item.id} item={item} />;
-          })}
+        {todos?.slice(0, 20)?.map((item) => {
+          return <Todo key={item.id} item={item} />;
+        })}
       </div>
     </>
   );

@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
-import { deleteAPI } from "../../services/fetchAPI";
-import { deleteTodo } from "../../services/prismaServiceOperations";
+import { deleteAPI, getAPI } from "../../services/fetchAPI";
+import { useTodosStore } from "@/store/todos";
 
 export default function Todo({ item }) {
+  const addTodo = useTodosStore((state) => state.addTodo);
   const deleteItem = async () => {
     try {
       const response = await deleteAPI("todos", item.id);
-      console.log(response, "response");
+      const data = await getAPI("todos");
+      await addTodo(data);
     } catch (error) {
       console.log(error, "catch err");
     }
