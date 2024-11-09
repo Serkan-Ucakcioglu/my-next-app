@@ -1,3 +1,4 @@
+"use server";
 // pages/api/todos.js
 import {
   createTodo,
@@ -38,14 +39,14 @@ export default async function handler(req, res) {
         res.status(500).json({ error: "Error updating todo" });
       }
       break;
-
     case "DELETE":
       try {
-        const { id } = req.body;
-        await deleteTodo(id);
+        const { id } = req.query;
+        console.log("api id", id);
+        await deleteTodo("todos", id);
         res.status(204).end();
       } catch (error) {
-        res.status(500).json({ error: "Error deleting todo" });
+        res.status(500).json({ error });
       }
       break;
 

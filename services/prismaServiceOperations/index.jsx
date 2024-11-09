@@ -1,3 +1,5 @@
+"use server";
+
 import prisma from "../../lib/prisma";
 
 // GET ALL
@@ -15,6 +17,7 @@ export async function createTodo(tableName, title) {
     const data = await prisma[tableName].create({
       data: { title },
     });
+    return data;
   } catch (error) {
     return { error: error.message };
   }
@@ -27,20 +30,21 @@ export async function updateTodo(tableName, id, title, completed) {
       where: { id },
       data: { title, completed },
     });
-    res.status(200).json(updatedTodo);
+    return { updatedTodo };
   } catch (error) {
-    res.status(500).json({ error: "Error updating todo" });
+    return { error };
   }
 }
 
 //Delete Todo
 export async function deleteTodo(tableName, id) {
   try {
-    await prisma[tableName].delete({
-      where: { id },
+    console.log(id, "id");
+    const deleted = await prisma[tableName].delete({
+      where: { id: String(id) },
     });
-    res.status(204).end();
+    return deleted;
   } catch (error) {
-    res.status(500).json({ error: "Error deleting todo" });
+    return { error };
   }
 }

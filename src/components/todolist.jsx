@@ -14,11 +14,14 @@ function Todolist() {
     getAllTodo();
   }, []);
   return (
-    <div className="flex flex-col gap-2">
-      {data?.slice(0, 20).map((item) => {
-        return <Todo key={item.id} item={item} />;
-      })}
-    </div>
+    <>
+      <div className="flex flex-col gap-2 w-[500px]">
+        {data.length &&
+          data?.slice(0, 20).map((item) => {
+            return <Todo key={item.id} item={item} />;
+          })}
+      </div>
+    </>
   );
 }
 

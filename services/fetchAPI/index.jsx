@@ -1,11 +1,9 @@
-const postAPI = async (
-  URL,
-  body,
-  method = "POST",
-  headers = { "Content-Type": "application/json" }
-) => {
+"use client";
+const headers = { "Content-Type": "application/json" };
+
+const postAPI = async (URL, body, method = "POST") => {
   try {
-    if (!process.env.NEXT_PUBLIC_API_URL || !URL) {
+    if (!URL) {
       throw new Error("URL bulunamadı!");
     }
     const data = await fetch(`api/${URL}`, {
@@ -19,10 +17,7 @@ const postAPI = async (
   }
 };
 
-const getAPI = async (
-  URL,
-  headers = { "Content-Type": "application/json" }
-) => {
+const getAPI = async (URL) => {
   try {
     const res = await fetch(`api/${URL}`, {
       method: "GET",
@@ -36,13 +31,7 @@ const getAPI = async (
   }
 };
 
-const putAPI = async (
-  URL,
-  id,
-  body,
-  method = "PUT",
-  headers = { "Content-Type": "application/json" }
-) => {
+const putAPI = async (URL, id, body, method = "PUT") => {
   try {
     if (!URL && !id) {
       throw new Error("URL veya id bulunamadı!");
@@ -58,23 +47,18 @@ const putAPI = async (
   }
 };
 
-const deleteAPI = async (
-  URL,
-  id,
-  body,
-  method = "DELETE",
-  headers = (headers = { "Content-Type": "application/json" })
-) => {
+const deleteAPI = async (URL, id, method = "DELETE") => {
   try {
-    if (!URL && !id) {
+    if (!URL) {
       throw new Error("URL veya id bulunamadı!");
     }
-    const data = await fetch(`api/${URL}/${id}`, {
-      method,
-      headers,
-      body: JSON.stringify(body),
+
+    const data = await fetch(`api/${URL}?id=${id}`, {
+      headers: headers,
+      method: method,
       cache: "no-store",
     });
+    return data;
   } catch (error) {
     throw new Error("failed");
   }
