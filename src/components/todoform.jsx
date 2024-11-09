@@ -28,7 +28,8 @@ function Todoform() {
         />
         <button
           onClick={onsubmit}
-          className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          disabled={val < 4}
+          className="bg-primary hover:bg-blue-700 text-white font-bold py-2 px-4 rounded disabled:opacity-25"
         >
           +
         </button>{" "}
