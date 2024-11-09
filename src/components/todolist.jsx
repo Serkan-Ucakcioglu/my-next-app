@@ -20,7 +20,7 @@ function Todolist() {
   return (
     <>
       <div className="flex flex-col gap-2 w-[500px]">
-        {todos?.slice(0, 20)?.map((item) => {
+        {todos?.map((item) => {
           return <Todo key={item.id} item={item} />;
         })}
       </div>
