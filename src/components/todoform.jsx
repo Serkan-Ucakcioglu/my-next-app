@@ -16,11 +16,13 @@ function Todoform() {
     };
     await postAPI("todos", todo);
     await renderData();
+    setVal("");
   };
   return (
     <div className="flex flex-col w-[500px]">
       <div className="flex items-center gap-2 ">
         <input
+          value={val}
           onChange={(e) => setVal(e.target.value)}
           className="w-full px-4 py-2 border rounded border-2 outline-none"
           type="text"
