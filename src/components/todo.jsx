@@ -64,7 +64,6 @@ export default function Todo({ item }) {
           className="border border-2 border-gray-100 p-4 w-full h-4 text-black outline-none bg-gray-200 rounded "
         />
       )}
-
       <div className="flex items-center gap-2 p-2">
         <button onClick={() => setUpdate((prev) => !prev)} className="p-1">
           ✏️

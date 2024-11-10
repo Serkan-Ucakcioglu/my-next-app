@@ -1,6 +1,5 @@
 "use client";
 import Image from "next/image";
-import Todo from "../components/todo";
 import Todoform from "@/components/todoform";
 import Todolist from "@/components/todolist";
 
