@@ -1,5 +1,9 @@
 "use client";
+
+import { useTodosStore } from "@/store/todos";
+
 const headers = { "Content-Type": "application/json" };
+const addTodo = useTodosStore.getState().addTodo;
 
 const postAPI = async (URL, body, method = "POST") => {
   try {
@@ -64,4 +68,13 @@ const deleteAPI = async (URL, id, method = "DELETE") => {
   }
 };
 
-export { postAPI, getAPI, putAPI, deleteAPI };
+const renderData = async (callback) => {
+  try {
+    const data = await getAPI("todos");
+    await addTodo(data);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+export { postAPI, getAPI, putAPI, deleteAPI, renderData };

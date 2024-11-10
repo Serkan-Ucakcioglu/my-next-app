@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { deleteAPI, getAPI, putAPI } from "../../services/fetchAPI";
+import { deleteAPI, getAPI, putAPI, renderData } from "../../services/fetchAPI";
 import { useTodosStore } from "@/store/todos";
 
 export default function Todo({ item }) {
@@ -8,8 +8,7 @@ export default function Todo({ item }) {
   const deleteItem = async () => {
     try {
       const response = await deleteAPI("todos", item.id);
-      const data = await getAPI("todos");
-      await addTodo(data);
+      await renderData(addTodo);
     } catch (error) {
       throw new Error(error);
     }
@@ -23,8 +22,7 @@ export default function Todo({ item }) {
         userId: item.userId,
       };
       const response = await putAPI("todos", item.id, todo);
-      const data = await getAPI("todos");
-      await addTodo(data);
+      await renderData();
     } catch (error) {
       throw new Error(error);
     }

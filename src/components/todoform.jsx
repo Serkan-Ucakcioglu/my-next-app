@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { getAPI, postAPI } from "../../services/fetchAPI";
+import { getAPI, postAPI, renderData } from "../../services/fetchAPI";
 import { useTodosStore } from "@/store/todos";
 
 function Todoform() {
@@ -15,8 +15,7 @@ function Todoform() {
       userId: Date.now(),
     };
     await postAPI("todos", todo);
-    const data = await getAPI("todos");
-    await addTodo(data);
+    await renderData();
   };
   return (
     <div className="flex flex-col w-[500px]">
