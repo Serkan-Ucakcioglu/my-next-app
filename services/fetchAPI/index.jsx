@@ -69,6 +69,7 @@ const deleteAPI = async (URL, id, method = "DELETE") => {
 };
 
 const renderData = async () => {
+  //render data
   try {
     const data = await getAPI("todos");
     await addTodo(data);
