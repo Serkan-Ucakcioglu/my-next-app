@@ -22,6 +22,7 @@ function Todoform() {
         <input
           value={val}
           onChange={(e) => setVal(e.target.value)}
+          onKeyDown={() => val < 4 && onsubmit()}
           className="w-full px-4 py-2 border rounded border-2 outline-none"
           type="text"
         />
