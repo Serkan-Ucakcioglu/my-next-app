@@ -1,18 +1,16 @@
 "use client";
 import React, { useEffect } from "react";
-import { getAPI, renderData } from "../../services/fetchAPI";
+import { renderData } from "../../services/fetchAPI";
 import Todo from "./todo";
 import { useTodosStore } from "@/store/todos";
 
 function Todolist() {
   const todos = useTodosStore((state) => state.todos);
-  const addTodo = useTodosStore((state) => state.addTodo);
 
   useEffect(() => {
     async function getAllTodo() {
       await renderData();
     }
-
     getAllTodo();
   }, []);
 
