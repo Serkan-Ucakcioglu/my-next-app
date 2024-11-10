@@ -17,6 +17,7 @@ const postAPI = async (URL, body, method = "POST") => {
       headers: headers,
       body: JSON.stringify(body),
       cache: "no-store",
+      mode: "no-cors",
     });
   } catch (err) {
     throw new Error(`API request failed: ${err}`);
@@ -29,6 +30,7 @@ const getAPI = async (URL) => {
       method: "GET",
       headers: headers,
       cache: "no-store",
+      mode: "no-cors",
     });
     const data = await res.json();
     return data;
@@ -47,6 +49,7 @@ const putAPI = async (URL, id, body, method = "PUT") => {
       headers: headers,
       body: JSON.stringify(body),
       cache: "no-store",
+      mode: "no-cors",
     });
   } catch (err) {
     throw new Error(`API request failed: ${err}`);
@@ -63,6 +66,7 @@ const deleteAPI = async (URL, id, method = "DELETE") => {
       headers: headers,
       method: method,
       cache: "no-store",
+      mode: "no-cors",
     });
     return data;
   } catch (error) {
