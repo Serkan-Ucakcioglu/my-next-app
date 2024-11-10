@@ -15,6 +15,7 @@ function Todoform() {
     await renderData();
     setVal("");
   };
+
   return (
     <div className="flex flex-col w-[500px]">
       <div className="flex items-center gap-2 ">
