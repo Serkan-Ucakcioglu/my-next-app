@@ -11,7 +11,6 @@ export default function Home() {
         alt="Todo Image"
         width={500}
         height={500}
-        layout="responsive"
         priority
       />
 

@@ -6,32 +6,10 @@ import {
   getAllTodos,
   updateTodo,
 } from "../../../services/prismaServiceOperations";
-import Cors from "cors";
-
-// CORS middleware'ini başlat
-const cors = Cors({
-  methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
-  origin: "*",
-  allowedHeaders: ["Content-Type"],
-  preflightContinue: false, // OPTIONS isteklerinin önceden işlem görmesini sağlar
-});
-
-function runMiddleware(req, res, fn) {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-}
 
 export default async function handler(req, res) {
   const { method } = req;
   res.setHeader("Access-Control-Allow-Origin", "*");
-
-  await runMiddleware(req, res, cors);
 
   switch (method) {
     case "GET":
