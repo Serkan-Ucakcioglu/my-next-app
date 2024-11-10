@@ -11,7 +11,7 @@ import Cors from "cors";
 // CORS middleware'ini başlat
 const cors = Cors({
   methods: ["GET", "POST", "DELETE", "PUT", "OPTIONS"],
-  origin: "https://my-next-app-3ak1.vercel.app",
+  origin: "*",
   allowedHeaders: ["Content-Type"],
   preflightContinue: false, // OPTIONS isteklerinin önceden işlem görmesini sağlar
 });
