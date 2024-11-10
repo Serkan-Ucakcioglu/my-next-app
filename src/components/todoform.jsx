@@ -1,12 +1,9 @@
 "use client";
-
 import { useState } from "react";
-import { getAPI, postAPI, renderData } from "../../services/fetchAPI";
-import { useTodosStore } from "@/store/todos";
+import { postAPI, renderData } from "../../services/fetchAPI";
 
 function Todoform() {
   const [val, setVal] = useState("");
-  const addTodo = useTodosStore((state) => state.addTodo);
 
   const onsubmit = async () => {
     const todo = {
