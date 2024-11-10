@@ -1,17 +1,15 @@
 "use client";
 import { useState } from "react";
 import { deleteAPI, putAPI, renderData } from "../../services/fetchAPI";
-import { useTodosStore } from "@/store/todos";
 
 export default function Todo({ item }) {
   const [update, setUpdate] = useState(false);
   const [val, setVal] = useState("");
-  const addTodo = useTodosStore((state) => state.addTodo);
 
   const deleteItem = async () => {
     try {
       const response = await deleteAPI("todos", item.id);
-      await renderData(addTodo);
+      await renderData();
     } catch (error) {
       throw new Error(error);
     }
