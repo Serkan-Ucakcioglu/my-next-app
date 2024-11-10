@@ -9,7 +9,6 @@ import {
 
 export default async function handler(req, res) {
   const { method } = req;
-  res.setHeader("Access-Control-Allow-Origin", "*");
 
   switch (method) {
     case "GET":

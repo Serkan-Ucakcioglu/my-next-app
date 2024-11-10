@@ -18,8 +18,9 @@ export async function getAllTodos(tableName) {
 // Create todo
 export async function createTodo(tableName, title, userId, completed) {
   try {
+    console.log(title, completed, userId, "prismaservice");
     const data = await prisma[tableName].create({
-      data: { title, userId, completed },
+      data: { title, userId, completed: completed },
     });
     return data;
   } catch (error) {
