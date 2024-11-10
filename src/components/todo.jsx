@@ -50,7 +50,7 @@ export default function Todo({ item }) {
   return (
     <div
       id={item?.id}
-      className={`flex justify-between items-center p-4 border border-2 hover:bg-gray-200 cursor-pointer hover:ease-in ease-in duration-300 ${
+      className={`flex justify-between  items-center p-4 border border-2 hover:bg-gray-200 cursor-pointer hover:ease-in ease-in duration-300 ${
         item?.completed && "bg-green-200 hover:bg-green-300"
       }`}
     >

@@ -27,7 +27,7 @@ function Todoform() {
   };
 
   return (
-    <div className="flex flex-col w-[500px]">
+    <div className="flex flex-col md:w-[500px] sm:w-[350px]">
       <div className="flex items-center gap-2 ">
         <input
           value={val}

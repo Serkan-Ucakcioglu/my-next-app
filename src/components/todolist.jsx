@@ -16,7 +16,7 @@ function Todolist() {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-[500px]">
+      <div className="flex flex-col gap-2 md:w-[500px] sm:[350px]">
         {todos?.map((item) => {
           return <Todo key={item.id} item={item} />;
         })}
