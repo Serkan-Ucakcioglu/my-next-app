@@ -33,7 +33,6 @@ function Todoform() {
           +
         </button>{" "}
       </div>
-      <button className="flex justify-end mt-2">Completed get</button>
     </div>
   );
 }
