@@ -24,7 +24,7 @@ export default function Todo({ item }) {
         completed: !item.completed,
         userId: item.userId,
       };
-      setUpdate(true);
+
       const response = await putAPI("todos", item.id, todo);
       await renderData();
     } catch (error) {
@@ -63,7 +63,7 @@ export default function Todo({ item }) {
           defaultValue={item.title}
           onChange={(e) => setVal(e.target.value)}
           onKeyDown={(e) => titleUpdate(e)}
-          className="border border-2 border-gray-100 w-full h-4 text-black outline-none bg-gray-200"
+          className="border border-2 border-gray-100 p-4 w-full h-4 text-black outline-none bg-gray-200 rounded "
         />
       )}
 
