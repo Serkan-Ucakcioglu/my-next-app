@@ -68,7 +68,7 @@ const deleteAPI = async (URL, id, method = "DELETE") => {
   }
 };
 
-const renderData = async (callback) => {
+const renderData = async () => {
   try {
     const data = await getAPI("todos");
     await addTodo(data);
